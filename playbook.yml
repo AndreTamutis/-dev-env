@@ -54,12 +54,6 @@
          pkg: ['git','terraform'] 
          state: latest
 
-    - name: Adicionar Usuario Vagrant no Grupo Docker
-      user:
-        name: vagrant
-        comment: Vagrant User
-        groups: docker
-
     ############# Setup do Ambiente de Desenvolvimento Python
     - name: Instalação do Pip Python
       apt:
@@ -71,14 +65,3 @@
         name: 
           - virtualenv
           - virtualenvwrapper
-
-    - name: Setup do Virtualenv
-      lineinfile:
-        dest: /home/vagrant/.bashrc
-        line: "{{ item.line }}"
-      loop:
-        - { line: '#Virtualenvwrapper settings:'}
-        - { line: 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3'}
-        - { line: 'export WORKON_HOME=$HOME/.virtualenv'}
-        - { line: 'export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv'}
-        - { line: 'source /usr/local/bin/virtualenvwrapper.sh'}
